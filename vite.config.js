@@ -7,15 +7,7 @@ import SortCss from 'postcss-sort-media-queries';
 export default defineConfig(({ command }) => {
   return {
     define: {
-      global: 'window', // Оставляем для финального билда
-    },
-    // Добавляем эту секцию для режима разработки (dev server):
-    optimizeDeps: {
-      esbuildOptions: {
-        define: {
-          global: 'globalThis', // esbuild подменит global на globalThis (что в браузере равно window)
-        },
-      },
+      [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
     build: {
